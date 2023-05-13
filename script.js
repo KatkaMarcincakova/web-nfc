@@ -1,25 +1,22 @@
-scanButton.addEventListener("click", async () => {
-  log("User clicked scan button");
+// Check if the browser supports the Web NFC API
+if ("NDEFReader" in window) {
+  // Define the function to read the NFC tag
+  async function readNfc() {
+    try {
+      // Request permission to access the NFC reader
+      const reader = new NDEFReader();
+      await reader.scan();
 
-  try {
-    const ndef = new NDEFReader();
-    await ndef.scan();
-    log("> Scan started");
+      // Wait for the NFC tag to be read
+      const { records } = await reader.read();
 
-    ndef.addEventListener("readingerror", () => {
-      log("Argh! Cannot read data from the NFC tag. Try another one?");
-    });
-
-    ndef.addEventListener("reading", ({ message, serialNumber }) => {
-      log(`> Serial Number: ${serialNumber}`);
-      log(`> Records: (${message.records.length})`);
-      // Get the div element
-      const div = document.getElementById("myDiv");
-
-      // Set the innerHTML property to replace the content of the div
-      div.innerHTML = serialNumber;
-    });
-  } catch (error) {
-    log("Argh! " + error);
+      // Display the tag data on the webpage
+      const tagDataDiv = document.getElementById("tagData");
+      tagDataDiv.innerHTML = records[0].data;
+    } catch (error) {
+      console.error("Error reading NFC tag:", error);
+    }
   }
-});
+} else {
+  console.error("Web NFC API not supported.");
+}
