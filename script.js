@@ -13,6 +13,11 @@ scanButton.addEventListener("click", async () => {
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
       log(`> Serial Number: ${serialNumber}`);
       log(`> Records: (${message.records.length})`);
+      // Get the div element
+      const div = document.getElementById("myDiv");
+
+      // Set the innerHTML property to replace the content of the div
+      div.innerHTML = serialNumber;
     });
   } catch (error) {
     log("Argh! " + error);
