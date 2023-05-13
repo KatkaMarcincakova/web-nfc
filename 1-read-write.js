@@ -6,6 +6,8 @@ var nfc = {
   hMsg : null, // html "console messages"
   init : () => {
     // (A1) GET HTML ELEMENTS
+    nfc.hTxt = document.getElementById("demoT"),
+    nfc.hWrite = document.getElementById("demoW"),
     nfc.hRead = document.getElementById("demoR"),
     nfc.hMsg = document.getElementById("demoMSG");
 
