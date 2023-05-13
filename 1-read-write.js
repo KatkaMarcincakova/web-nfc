@@ -1,10 +1,15 @@
 var nfc = {
   // (A) INIT
+  hTxt : null, // html data to write
+  hWrite : null, // html write button
   hRead : null, // html read button
-  nfc.hMsg = document.getElementById("demoMSG");
+  hMsg : null, // html "console messages"
   init : () => {
     // (A1) GET HTML ELEMENTS
+    nfc.hTxt = document.getElementById("demoT"),
+    nfc.hWrite = document.getElementById("demoW"),
     nfc.hRead = document.getElementById("demoR"),
+    nfc.hMsg = document.getElementById("demoMSG");
 
     // (A2) FEATURE CHECK + GET PERMISSION
     if ("NDEFReader" in window) {
@@ -22,6 +27,15 @@ var nfc = {
     nfc.hMsg.appendChild(row);
   },
 
+  // (C) WRITE NFC TAG
+  write : () => {
+    nfc.logger("Approach NFC Tag");
+    const ndef = new NDEFReader();
+    ndef.write(nfc.hTxt.value)
+    .then(() => nfc.logger("Write OK"))
+    .catch(err => nfc.logger("ERROR - " + err.message));
+  },
+
   // (D) READ NFC TAG
   read : () => {
     nfc.logger("Approach NFC Tag");
@@ -32,8 +46,8 @@ var nfc = {
       ndef.onreading = evt => {
         const decoder = new TextDecoder();
         for (let record of evt.message.records) {
-          //nfc.logger("Record type: " + record.recordType);
-          //nfc.logger("Record encoding: " + record.encoding);
+          nfc.logger("Record type: " + record.recordType);
+          nfc.logger("Record encoding: " + record.encoding);
           nfc.logger("Record data: " + decoder.decode(record.data));
         }
       };
