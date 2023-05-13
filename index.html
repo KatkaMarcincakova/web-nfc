@@ -7,15 +7,11 @@
  
   </head>
   <body>
-   <button id="scanButton">Scan</button>
-   <div id="myDiv">Hello, world!</div>
+    <div>
+      <button onclick="readNfc()">Read NFC tag</button>
+      <div id="tagData"></div>
+    </div>
 
-    <script>
-    log = ChromeSamples.log;
-
-    if (!("NDEFReader" in window))
-      ChromeSamples.setStatus("Web NFC is not available. Use Chrome on Android.");
-    </script>
-       <script defer src="script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
