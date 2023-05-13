@@ -1,6 +1,6 @@
 var nfc = {
   // (A) INIT
-  //hRead : null, // html read button
+  hRead : null, // html read button
   init : () => {
     // (A1) GET HTML ELEMENTS
     nfc.hRead = document.getElementById("demoR"),
