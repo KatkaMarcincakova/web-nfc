@@ -4,15 +4,17 @@
     <title>Web NFC Read Write</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="0-dummy.css">
-    <script defer src="1-read-write.js"></script>
+ 
   </head>
   <body>
-    <!-- (A) NFC TAG ACTIONS -->
-    <div id="demoNFC">
-      <input type="button" id="demoR" value="Read" onclick="nfc.read()">
-    </div>
+   <button id="scanButton">Scan</button>
 
-    <!-- (B) "CONSOLE MESSAGES" -->
-    <div id="demoMSG"></div>
+<script>
+log = ChromeSamples.log;
+
+if (!("NDEFReader" in window))
+  ChromeSamples.setStatus("Web NFC is not available. Use Chrome on Android.");
+</script>
+       <script defer src="script.js"></script>
   </body>
 </html>
