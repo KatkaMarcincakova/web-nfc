@@ -14,9 +14,11 @@ if ("NDEFReader" in window) {
       const tagDataDiv = document.getElementById("tagData");
       tagDataDiv.innerHTML = records[0].data;
     } catch (error) {
-      console.error("Error reading NFC tag:", error);
+      const tagDataDiv = document.getElementById("tagData");
+      tagDataDiv.innerHTML = "Error reading NFC tag:" + error;
     }
   }
 } else {
-  console.error("Web NFC API not supported.");
+      const tagDataDiv = document.getElementById("tagData");
+      tagDataDiv.innerHTML = "NFC not supported";
 }
