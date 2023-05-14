@@ -10,10 +10,8 @@ if ('NDEFReader' in window) {
           console.log("Argh! Cannot read data from the NFC tag. Try another one?");
         });
 
-        ndef.addEventListener("reading", ({ message, serialNumber }) => {
+        ndef.addEventListener("reading", ({ serialNumber }) => {
           console.log(`> Serial Number: ${serialNumber}`);
-          console.log(`> Records: (${message.records.length})`);
-          console.log(`> Record: (${message.records[0]})`);
         });
       } catch (error) {
         console.log("Argh! " + error);
