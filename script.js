@@ -1,6 +1,6 @@
-scanButton.addEventListener("click", async () => {
-  console.log("User clicked scan button");
-  if ('NDEFReader' in window) {
+if ('NDEFReader' in window) {
+  scanButton.addEventListener("click", async () => {
+      console.log("User clicked scan button");
       try {
         const ndef = new NDEFReader();
         await ndef.scan();
@@ -17,7 +17,7 @@ scanButton.addEventListener("click", async () => {
       } catch (error) {
         console.log("Argh! " + error);
       }
-  } else {
+    });
+} else {
     console.log("no nfc");
-  }
-});
+}
