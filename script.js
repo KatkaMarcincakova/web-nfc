@@ -19,5 +19,6 @@ if ('NDEFReader' in window) {
       }
     });
 } else {
+    document.getElementById("scanButton").style.visibility='hidden';
     console.log("no nfc");
 }
