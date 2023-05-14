@@ -13,6 +13,7 @@ if ('NDEFReader' in window) {
         ndef.addEventListener("reading", ({ message, serialNumber }) => {
           console.log(`> Serial Number: ${serialNumber}`);
           console.log(`> Records: (${message.records.length})`);
+          console.log(`> Record: (${message.records[0]})`);
         });
       } catch (error) {
         console.log("Argh! " + error);
